@@ -1,7 +1,7 @@
 import json
 
 def mensagemErro(msg):
-    return print(f'\n [ERRO] {msg}')
+    print(f'\n [ERRO] {msg}')
 
 def leituraInicial():
     with open('BancoDeDados.txt', 'r') as dados:    
@@ -13,7 +13,7 @@ def leituraInicial():
     return BancoDeDados
 
 def opcoesMenu(option): 
-    if option not in range(1,8):
+    if option not in range(1,9):
         return False
     else: 
         return option
@@ -37,6 +37,14 @@ def novoSaque(dadosConta, valor):
     else: 
         dadosConta["Saldo"] -= valor
         return [dadosConta["num"], -valor]
+    
+def novaTransferencia(contaPagador, valorPago, contaRecebedor):
+    if (contaPagador["Saldo"] - valorPago) < 0:
+        return None
+    else:
+        contaPagador["Saldo"] -= valorPago
+        contaRecebedor["Saldo"] += valorPago
+        return [f'{contaPagador['num']}, {-valorPago} | {contaRecebedor['num']}, {valorPago}']
 
 def criarLista(listaContas):
     listaGeral = []

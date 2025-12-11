@@ -8,14 +8,14 @@ while True:
     try:
         option = int(input('\nCONTROLE BANCÁRIO \n'
             'Como podemos te ajudar hoje? \n'
-            '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Sair \n'))
+            '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Transferência entre contas \n8- Sair \n'))
     except ValueError:
         fb.mensagemErro("Insira um Número válido")
-        break
+        continue
     opcao = fb.opcoesMenu(option)
     if opcao == False:
         fb.mensagemErro("Insira uma opção Válida")
-    elif opcao == 7:
+    elif opcao == 8:
         print('Até logo!')
         break
     elif opcao == 1: #deposito
@@ -25,8 +25,8 @@ while True:
         if conta is None:
             fb.mensagemErro("Digite uma conta válida e tente novamente")
         else: 
-            operacao = fb.novoDeposito(conta,valor)
-            mov_diario.append(operacao)
+            deposito = fb.novoDeposito(conta,valor)
+            mov_diario.append(deposito)
             fb.atualizarBancoDados(contas)
             print("\nOperação Realizada com sucesso")
         
@@ -37,9 +37,9 @@ while True:
         if conta is None:
             fb.mensagemErro("Digite uma conta válida e tente novamente")
         else:
-            operacao = fb.novoSaque(conta, valor)
-            if operacao is not None:
-                mov_diario.append(operacao)
+            saque = fb.novoSaque(conta, valor)
+            if saque is not None:
+                mov_diario.append(saque)
                 fb.atualizarBancoDados(contas)
                 print('\nOperação Realizada com sucesso!')
             else:
@@ -49,10 +49,13 @@ while True:
         lista = fb.criarLista(contas)
         for elemento in lista: 
             print(f'Conta {elemento[0]}, tipo de conta: {elemento[1]}')
+            
     elif opcao == 4: #movimentos diários
         fb.movDiario(mov_diario)
+        
     elif opcao == 5: #saldo das contas
         fb.saldoContas(contas)
+        
     elif opcao == 6: #cadastro de novos usuários
         conta = int(input("Digite o Tipo da conta a ser cadastrada\n1- Conta Corrente  |  2- Conta Salário  |  3- Conta Poupança\n"))
         
@@ -66,3 +69,19 @@ while True:
         with open('BancoDeDados.txt', 'a', encoding='UTF-8') as banco: 
             banco.write(json.dumps(novoUsuario) + "\n") # o json.dumps converte o dicionário retornado da função para o formato JSON (com aspas duplas "")
             print(f'Usuáro Cadastrado, Seja Bem Vindo(a) {cliente}, O número da sua conta é: {novoUsuario['num']} ')  
+
+    elif opcao == 7: #transferência
+        codPagador = input('Insira o número da conta do Pagador')
+        valorPago = fb.lerEntrada('Insira o Valor a ser pago')
+        contaPagador = fb.retornarDados(codPagador, contas)
+        codRecebedor = input('Insira o número da conta do Recebedor')
+        contaRecebedor = fb.retornarDados(codRecebedor, contas)
+        
+        transferencia = fb.novaTransferencia(contaPagador, valorPago, contaRecebedor)
+        
+        if transferencia is None:
+            fb.mensagemErro(f'O saldo disponível para pagador é de {contaPagador["Saldo"]}')
+        else:
+            mov_diario.append(transferencia)
+            fb.atualizarBancoDados(contas)
+            print('\nOperação Realizada com sucesso!')
