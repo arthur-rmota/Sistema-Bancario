@@ -1,5 +1,8 @@
 import json
 
+def mensagemErro(msg):
+    return print(f'\n [ERRO] {msg}')
+
 def leituraInicial():
     with open('BancoDeDados.txt', 'r') as dados:    
         BancoDeDados = []
@@ -14,7 +17,6 @@ def opcoesMenu(option):
         return False
     else: 
         return option
-
 
 def retornarDados(conta, listaContas):
     validador = False

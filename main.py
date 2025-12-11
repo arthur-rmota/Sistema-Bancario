@@ -10,11 +10,11 @@ while True:
             'Como podemos te ajudar hoje? \n'
             '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Sair \n'))
     except ValueError:
-        print("Erro: Insira um Número válido")
+        fb.mensagemErro("Insira um Número válido")
         break
     opcao = fb.opcoesMenu(option)
     if opcao == False:
-        print(f'\nErro, Insira uma opção Válida\n')
+        fb.mensagemErro("Insira uma opção Válida")
     elif opcao == 7:
         print('Até logo!')
         break
@@ -30,7 +30,7 @@ while True:
         valor = float(input('Insira o valor do Saque'))
         conta = fb.retornarDados(cod,contas)
         if conta is None:
-            print('ERRO, Digite uma conta válida e tente novamente')
+            fb.mensagemErro("Digite uma conta válida e tente novamente")
         else:
             operacao = fb.novoSaque(conta, valor)
             if operacao is not None:
@@ -54,7 +54,7 @@ while True:
         if fb.verificarTipoDeConta(conta) is True:
             cliente = input("Digite o Nome Completo do Cliente\n")
         else:
-           print("ERRO, Insira uma das opções corretas e Tente novamente")  
+           fb.mensagemErro("Insira uma das opções corretas e Tente novamente")  
 
         novoUsuario = fb.cadastro(conta, cliente)
 
