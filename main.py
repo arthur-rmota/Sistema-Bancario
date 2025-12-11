@@ -5,8 +5,17 @@ contas = fb.leituraInicial()
 mov_diario = []
 
 while True: 
-    opcao = fb.opcoesMenu()
-    if opcao == 7:
+    try:
+        option = int(input('\nCONTROLE BANCÁRIO \n'
+            'Como podemos te ajudar hoje? \n'
+            '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Sair \n'))
+    except ValueError:
+        print("Erro: Insira um Número válido")
+        break
+    opcao = fb.opcoesMenu(option)
+    if opcao == False:
+        print(f'\nErro, Insira uma opção Válida\n')
+    elif opcao == 7:
         print('Até logo!')
         break
     elif opcao == 1: #deposito

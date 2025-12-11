@@ -9,12 +9,9 @@ def leituraInicial():
         
     return BancoDeDados
 
-def opcoesMenu(): 
-    option = int(input('\nCONTROLE BANCÁRIO \n'
-          'Como podemos te ajudar hoje? \n'
-          '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Sair \n'))
+def opcoesMenu(option): 
     if option not in range(1,8):
-        return print('\nErro, Insira uma opção Válida\n')
+        return False
     else: 
         return option
 
