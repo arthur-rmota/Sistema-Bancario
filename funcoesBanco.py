@@ -32,8 +32,11 @@ def novoDeposito(dadosConta, valor):
     return [dadosConta["num"], valor]
     
 def novoSaque(dadosConta, valor):
-    dadosConta["Saldo"] -= valor
-    return [dadosConta["num"], -valor]
+    if (dadosConta["Saldo"] - valor) < 0:
+        return None
+    else: 
+        dadosConta["Saldo"] -= valor
+        return [dadosConta["num"], -valor]
 
 def criarLista(listaContas):
     listaGeral = []

@@ -15,12 +15,19 @@ while True:
         conta = fb.retornarDados(cod,contas)
         mov_diario.append(fb.novoDeposito(conta,valor))
         fb.atualizarBancoDados(contas)
+        
     elif opcao == 2: #saque
         cod = input('Insira o número da conta')
         valor = float(input('Insira o valor do Saque'))
         conta = fb.retornarDados(cod,contas)
-        mov_diario.append(fb.novoSaque(conta, valor))
-        fb.atualizarBancoDados(contas)
+        operacao = fb.novoSaque(conta, valor)
+        if operacao is not None:
+            mov_diario.append(operacao)
+            fb.atualizarBancoDados(contas)
+            print('\nOperação Realizada com sucesso!')
+        else:
+            print(f"\nSaldo Indisponível, O valor máximo para saque é de R${conta["Saldo"]}")
+        
     elif opcao == 3: #tipos de conta
         lista = fb.criarLista(contas)
         for elemento in lista: 
