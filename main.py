@@ -21,7 +21,7 @@ while True:
         valor = float(input('Insira o valor do Saque'))
         conta = fb.retornarDados(cod,contas)
         if conta is None:
-            print(f'ERRO, Digite uma conta válida e tente novamente')
+            print('ERRO, Digite uma conta válida e tente novamente')
         else:
             operacao = fb.novoSaque(conta, valor)
             if operacao is not None:

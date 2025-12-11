@@ -18,6 +18,7 @@ def opcoesMenu():
     else: 
         return option
 
+
 def retornarDados(conta, listaContas):
     validador = False
     for elemento in range(len(listaContas)):
