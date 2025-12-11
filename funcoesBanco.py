@@ -25,7 +25,7 @@ def retornarDados(conta, listaContas):
             validador = True
             return  listaContas[elemento]
     if validador == False: 
-        return f'ERRO, Digite uma conta válida e tente novamente'
+        return None
     
 def novoDeposito(dadosConta, valor):
     dadosConta["Saldo"] += valor
