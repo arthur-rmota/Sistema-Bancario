@@ -18,12 +18,12 @@ def opcoesMenu(option):
     else: 
         return option
 
-def retornarDados(conta, listaContas):
+def retornarDados(conta, listaContas, valor):
     validador = False
     for elemento in range(len(listaContas)):
         if conta == listaContas[elemento]["num"]: 
             validador = True
-            return  listaContas[elemento]
+            return  [listaContas[elemento], valor]
     if validador == False: 
         return None
     
@@ -116,3 +116,11 @@ def lerEntrada(msg):
         except ValueError: 
             mensagemErro("digite um número")
             continue
+        
+def dadosOperacao(contas):
+    cod = input('Insira o número da conta:')    
+    valor = lerEntrada('Insira o valor do Depósito')
+    conta = retornarDados(cod,contas, valor)
+
+    return conta
+
