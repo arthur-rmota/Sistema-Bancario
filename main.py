@@ -20,14 +20,19 @@ while True:
         break
     elif opcao == 1: #deposito
         cod = input('Insira o número da conta:')
-        valor = float(input('Insira o valor do Depósito'))
+        valor = fb.lerEntrada('Insira o valor do Depósito')
         conta = fb.retornarDados(cod,contas)
-        mov_diario.append(fb.novoDeposito(conta,valor))
-        fb.atualizarBancoDados(contas)
+        if conta is None:
+            fb.mensagemErro("Digite uma conta válida e tente novamente")
+        else: 
+            operacao = fb.novoDeposito(conta,valor)
+            mov_diario.append(operacao)
+            fb.atualizarBancoDados(contas)
+            print("\nOperação Realizada com sucesso")
         
     elif opcao == 2: #saque
         cod = input('Insira o número da conta')
-        valor = float(input('Insira o valor do Saque'))
+        valor = fb.lerEntrada("Insira o valor do Saque")
         conta = fb.retornarDados(cod,contas)
         if conta is None:
             fb.mensagemErro("Digite uma conta válida e tente novamente")

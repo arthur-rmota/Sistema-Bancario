@@ -97,3 +97,14 @@ def atualizarBancoDados(contas):
         for item in contas:
             dado.write(json.dumps(item) + "\n")
     
+def lerEntrada(msg):
+    while True: 
+        try: 
+            valor = float(input(msg))
+            if valor <= 0:
+                mensagemErro("Digite um valor maior que ZERO")
+            else:
+                return valor
+        except ValueError: 
+            mensagemErro("digite um número")
+            continue
