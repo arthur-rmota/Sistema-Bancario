@@ -107,8 +107,8 @@ def atualizarBancoDados(contas):
     
 def lerEntrada(msg):
     while True: 
-        try: 
-            valor = float(input(msg))
+        try:
+            valor = float(input(msg).replace(",",".") )
             if valor <= 0:
                 mensagemErro("Digite um valor maior que ZERO")
             else:
@@ -118,7 +118,7 @@ def lerEntrada(msg):
             continue
         
 def dadosOperacao(contas):
-    cod = input('Insira o número da conta:')    
+    cod = input('Insira o número da conta:')
     valor = lerEntrada('Insira o valor do Depósito')
     conta = retornarDados(cod,contas, valor)
 
