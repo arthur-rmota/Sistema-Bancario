@@ -67,13 +67,7 @@ while True:
             print(f'Usuáro Cadastrado, Seja Bem Vindo(a) {cliente}, O número da sua conta é: {novoUsuario['num']} ')  
 
     elif opcao == 7: #transferência
-        codPagador = input('Insira o número da conta do Pagador')
-        valorPago = fb.lerEntrada('Insira o Valor a ser pago')
-        contaPagador = fb.retornarDados(codPagador, contas)
-        codRecebedor = input('Insira o número da conta do Recebedor')
-        contaRecebedor = fb.retornarDados(codRecebedor, contas)
-        
-        transferencia = fb.novaTransferencia(contaPagador, valorPago, contaRecebedor)
+        transferencia = fb.dadosOperacaoTransferencia(contas)
         
         if transferencia is None:
             fb.mensagemErro(f'O saldo disponível para pagador é de {contaPagador["Saldo"]}')

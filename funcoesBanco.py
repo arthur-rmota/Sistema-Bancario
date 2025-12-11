@@ -18,7 +18,7 @@ def opcoesMenu(option):
     else: 
         return option
 
-def retornarDados(conta, listaContas, valor):
+def retornarDados(conta, listaContas, valor=0):
     validador = False
     for elemento in range(len(listaContas)):
         if conta == listaContas[elemento]["num"]: 
@@ -44,7 +44,7 @@ def novaTransferencia(contaPagador, valorPago, contaRecebedor):
     else:
         contaPagador["Saldo"] -= valorPago
         contaRecebedor["Saldo"] += valorPago
-        return [f'{contaPagador['num']}, {-valorPago} | {contaRecebedor['num']}, {valorPago}']
+        return [f"Transferencia: ({contaPagador['num']}, {-valorPago}) => ({contaRecebedor['num']}, +{valorPago})"]
 
 def criarLista(listaContas):
     listaGeral = []
@@ -124,3 +124,12 @@ def dadosOperacao(contas):
 
     return conta
 
+def dadosOperacaoTransferencia(contas):
+    codPagador = input('Insira o número da conta do Pagador')
+    valorPago = lerEntrada('Insira o Valor a ser pago')
+    contaPagador = retornarDados(codPagador, contas, valorPago)
+    
+    codRecebedor = input('Insira o número da conta do Recebedor')
+    contaRecebedor = retornarDados(codRecebedor, contas)
+        
+    return novaTransferencia(contaPagador[0], valorPago, contaRecebedor[0])
