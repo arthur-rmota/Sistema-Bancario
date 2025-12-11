@@ -1,5 +1,5 @@
-{"num": "1001-C", "cliente": "Ana Silva", "Saldo": 1904.9}
-{"num": "1002-C", "cliente": "Beto Souza", "Saldo": 2000}
+{"num": "1001-C", "cliente": "Ana Silva", "Saldo": 2204.0}
+{"num": "1002-C", "cliente": "Beto Souza", "Saldo": 2000.0}
 {"num": "1001-S", "cliente": "Carlos Souza", "Saldo": 1450.0}
 {"num": "1001-P", "cliente": "Maria Teixeira", "Saldo": 5000}
 {"num": "1003-C", "cliente": "Arthur Mota", "Saldo": 1955.0}

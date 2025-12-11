@@ -19,7 +19,7 @@ while True:
         print('Até logo!')
         break
     elif opcao == 1: #deposito
-        conta = fb.dadosOperacao(contas)
+        conta = fb.dadosOperacao(contas, "depósito")
         if conta is None:
             fb.mensagemErro("Digite uma conta válida e tente novamente")
         else: 
@@ -29,7 +29,7 @@ while True:
             print("\nOperação Realizada com sucesso")
         
     elif opcao == 2: #saque
-        conta = fb.dadosOperacao(contas)
+        conta = fb.dadosOperacao(contas, "saque")
         if conta is None:
             fb.mensagemErro("Digite uma conta válida e tente novamente")
         else:
@@ -70,7 +70,7 @@ while True:
         transferencia = fb.dadosOperacaoTransferencia(contas)
         
         if transferencia is None:
-            fb.mensagemErro(f'O saldo disponível para pagador é de {contaPagador["Saldo"]}')
+            fb.mensagemErro(f'Saldo indisponível')
         else:
             mov_diario.append(transferencia)
             fb.atualizarBancoDados(contas)

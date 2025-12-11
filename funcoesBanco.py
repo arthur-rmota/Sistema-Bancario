@@ -44,7 +44,7 @@ def novaTransferencia(contaPagador, valorPago, contaRecebedor):
     else:
         contaPagador["Saldo"] -= valorPago
         contaRecebedor["Saldo"] += valorPago
-        return [f"Transferencia: ({contaPagador['num']}, {-valorPago}) => ({contaRecebedor['num']}, +{valorPago})"]
+        return f"Transferencia:({contaPagador['num']}, {-valorPago}) => ({contaRecebedor['num']}, +{valorPago})"
 
 def criarLista(listaContas):
     listaGeral = []
@@ -59,11 +59,18 @@ def criarLista(listaContas):
     return listaGeral
 
 def movDiario(lista): 
+    cont = 1
     for elemento in lista: 
-        if elemento[1] > 0:
-            print(f'Conta: {elemento[0]}; Valor Depositado: {elemento[1]}')
-        elif elemento[1] < 0: 
-            print(f'Conta: {elemento[0]}; Valor Sacado: {abs(elemento[1])}')
+        if type(elemento) is str:
+            print(f'Transação {cont} => {elemento}')
+            cont +=1
+        elif type(elemento) is list:
+            if elemento[1] > 0:
+                print(f'Transação {cont} => Conta: {elemento[0]}; Valor Depositado: {elemento[1]}')
+                cont +=1
+            elif elemento[1] < 0: 
+                print(f'Transação {cont} => Conta: {elemento[0]}; Valor Sacado: {abs(elemento[1])}')
+                cont +=1
             
 def saldoContas(dados):
     for elemento in dados:
@@ -117,9 +124,9 @@ def lerEntrada(msg):
             mensagemErro("digite um número")
             continue
         
-def dadosOperacao(contas):
+def dadosOperacao(contas,txt):
     cod = input('Insira o número da conta:')
-    valor = lerEntrada('Insira o valor do Depósito')
+    valor = lerEntrada(f'Insira o valor do {txt}')
     conta = retornarDados(cod,contas, valor)
 
     return conta
