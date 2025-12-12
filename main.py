@@ -33,17 +33,8 @@ while True:
     elif opcao == 6: #cadastro de novos usuários
         conta = fb.criarTipo()
         novoUsuario = fb.cadastrar(conta)
-        
-        with open('BancoDeDados.txt', 'a', encoding='UTF-8') as banco: 
-            banco.write(json.dumps(novoUsuario) + "\n") # o json.dumps converte o dicionário retornado da função para o formato JSON (com aspas duplas "")
-            print(f'Usuáro Cadastrado, Seja Bem Vindo(a) {novoUsuario['cliente']}, O número da sua conta é: {novoUsuario['num']} ')  
-
+        op.writeBanco(novoUsuario)
+          
     elif opcao == 7: #transferência
-        transferencia = fb.dadosOperacaoTransferencia(contas)
-        
-        if transferencia is None:
-            fb.mensagemErro(f'Saldo indisponível')
-        else:
-            mov_diario.append(transferencia)
-            fb.atualizarBancoDados(contas)
-            print('\nOperação Realizada com sucesso!')
+        operacao = fb.dadosOperacaoTransferencia(contas)
+        op.verificarTransferencia(operacao, mov_diario, contas)

@@ -1,8 +1,10 @@
-{"num": "1001-C", "cliente": "Ana Silva", "Saldo": 2500.0}
+{"num": "1001-C", "cliente": "Ana Silva", "Saldo": 2300.0}
 {"num": "1002-C", "cliente": "Beto Souza", "Saldo": 2955.0}
-{"num": "1001-S", "cliente": "Carlos Souza", "Saldo": 1450.0}
+{"num": "1001-S", "cliente": "Carlos Souza", "Saldo": 1350.0}
 {"num": "1001-P", "cliente": "Maria Teixeira", "Saldo": 5000}
 {"num": "1003-C", "cliente": "Arthur Mota", "Saldo": 1000.0}
 {"num": "1002-S", "cliente": "Sofia Mota", "Saldo": 100.0}
-{"num": "1004-C", "cliente": "Kenia Parente", "Saldo": 1100.0}
-{"num": "1003-S", "cliente": "Amanda Borges", "Saldo": 0}
+{"num": "1004-C", "cliente": "Kenia Parente", "Saldo": 1000.0}
+{"num": "1003-S", "cliente": "Amanda Borges", "Saldo": 300.0}
+{"num": "1002-P", "cliente": "Luna Silva", "Saldo": 100.0}
+{"num": "1004-S", "cliente": "Gabriela Ara\u00fajo", "Saldo": 100.0}

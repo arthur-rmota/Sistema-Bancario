@@ -1,4 +1,5 @@
 import funcoesBanco as fb
+import json
 
 def verificarSaque(conta,mov_diario,contas):
     if conta is None:
@@ -27,12 +28,22 @@ def verificarParada(opcao):
     elif opcao == 8:
         print('Até logo!')
         return False
-
-def criarTipo():
-    return int(input("Digite o Tipo da conta a ser cadastrada\n1- Conta Corrente  |  2- Conta Salário  |  3- Conta Poupança\n"))
     
 def verificarTipoDeConta(num):
     if num > 3 or num < 1:
         return False
     else: 
         return True
+    
+def verificarTransferencia(transferencia, mov,contas):
+    if transferencia is None:
+        fb.mensagemErro(f'Saldo indisponível')
+    else:
+        mov.append(transferencia)
+        fb.atualizarBancoDados(contas)
+        print('\nOperação Realizada com sucesso!')
+
+def writeBanco(novoUsuario):
+    with open('BancoDeDados.txt', 'a', encoding='UTF-8') as banco: 
+        banco.write(json.dumps(novoUsuario) + "\n") # o json.dumps converte o dicionário retornado da função para o formato JSON (com aspas duplas "")
+        print(f'Usuáro Cadastrado, Seja Bem Vindo(a) {novoUsuario['cliente']}, O número da sua conta é: {novoUsuario['num']} ')
