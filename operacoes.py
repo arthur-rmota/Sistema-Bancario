@@ -27,3 +27,12 @@ def verificarParada(opcao):
     elif opcao == 8:
         print('Até logo!')
         return False
+
+def criarTipo():
+    return int(input("Digite o Tipo da conta a ser cadastrada\n1- Conta Corrente  |  2- Conta Salário  |  3- Conta Poupança\n"))
+    
+def verificarTipoDeConta(num):
+    if num > 3 or num < 1:
+        return False
+    else: 
+        return True

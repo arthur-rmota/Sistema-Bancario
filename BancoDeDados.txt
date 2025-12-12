@@ -4,4 +4,5 @@
 {"num": "1001-P", "cliente": "Maria Teixeira", "Saldo": 5000}
 {"num": "1003-C", "cliente": "Arthur Mota", "Saldo": 1000.0}
 {"num": "1002-S", "cliente": "Sofia Mota", "Saldo": 100.0}
-{"num": "1004-C", "cliente": "Kenia Parente", "Saldo": 1000.0}
+{"num": "1004-C", "cliente": "Kenia Parente", "Saldo": 1100.0}
+{"num": "1003-S", "cliente": "Amanda Borges", "Saldo": 0}

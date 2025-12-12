@@ -1,4 +1,5 @@
 import json
+import operacoes as op
 
 def mensagemErro(msg):
     print(f'\n [ERRO] {msg}')
@@ -17,7 +18,7 @@ def funcaoInicial():
         try:
             option = int(input('\nCONTROLE BANCÁRIO \n'
                 'Como podemos te ajudar hoje? \n'
-                '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Transferência entre contas \n8- Sair \n'))
+                '1- Depósito \n2- Saque\n3- Contas Cadastradas \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Transferência entre contas \n8- Sair \n'))
         except ValueError:
             mensagemErro("Insira uma opção válida")
             continue
@@ -112,11 +113,6 @@ def cadastro(tipoConta, cliente):
     
     return novoUsuario
 
-def verificarTipoDeConta(num):
-    if num > 3 or num < 1:
-        return False
-    else: 
-        return True
     
 def atualizarBancoDados(contas):
     with open ('BancoDeDados.txt', 'w') as dado:
@@ -151,3 +147,18 @@ def dadosOperacaoTransferencia(contas):
     contaRecebedor = retornarDados(codRecebedor, contas)
         
     return novaTransferencia(contaPagador[0], valorPago, contaRecebedor[0])
+
+def imprimirLista(lista):
+    for elemento in lista: 
+        print(f'Conta {elemento[0]}, tipo de conta: {elemento[1]}')
+
+def criarTipo():
+    return int(input("Digite o Tipo da conta a ser cadastrada\n1- Conta Corrente  |  2- Conta Salário  |  3- Conta Poupança\n"))
+        
+def cadastrar(conta):
+    if op.verificarTipoDeConta(conta) is True:
+        cliente = input("Digite o Nome Completo do Cliente\n")
+    else:
+        mensagemErro("Insira uma das opções corretas e Tente novamente")  
+        
+    return cadastro(conta, cliente)
