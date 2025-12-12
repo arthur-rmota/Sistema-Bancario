@@ -12,6 +12,17 @@ def leituraInicial():
         
     return BancoDeDados
 
+def funcaoInicial():
+    while True:
+        try:
+            option = int(input('\nCONTROLE BANCÁRIO \n'
+                'Como podemos te ajudar hoje? \n'
+                '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Transferência entre contas \n8- Sair \n'))
+        except ValueError:
+            mensagemErro("Insira uma opção válida")
+            continue
+        return option
+
 def opcoesMenu(option): 
     if option not in range(1,9):
         return False

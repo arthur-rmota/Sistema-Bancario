@@ -1,45 +1,24 @@
 import funcoesBanco as fb
 import json 
+import verificacoes as vf
 
 contas = fb.leituraInicial()
 mov_diario = []
 
 while True: 
-    try:
-        option = int(input('\nCONTROLE BANCÁRIO \n'
-            'Como podemos te ajudar hoje? \n'
-            '1- Depósito \n2- Saque\n3- Tipos de Conta \n4- Movimento Diário \n5- Saldo das Contas \n6- Cadastrar Nova Conta \n7- Transferência entre contas \n8- Sair \n'))
-    except ValueError:
-        fb.mensagemErro("Insira um Número válido")
-        continue
+    option = fb.funcaoInicial()
     opcao = fb.opcoesMenu(option)
-    if opcao == False:
-        fb.mensagemErro("Insira uma opção Válida")
-    elif opcao == 8:
-        print('Até logo!')
+    
+    if vf.verificarParada(opcao) is False:
         break
+    
     elif opcao == 1: #deposito
         conta = fb.dadosOperacao(contas, "depósito")
-        if conta is None:
-            fb.mensagemErro("Digite uma conta válida e tente novamente")
-        else: 
-            deposito = fb.novoDeposito(conta[0],conta[1])
-            mov_diario.append(deposito)
-            fb.atualizarBancoDados(contas)
-            print("\nOperação Realizada com sucesso")
+        vf.verificarDeposito(conta, mov_diario, contas)
         
     elif opcao == 2: #saque
         conta = fb.dadosOperacao(contas, "saque")
-        if conta is None:
-            fb.mensagemErro("Digite uma conta válida e tente novamente")
-        else:
-            saque = fb.novoSaque(conta[0], conta[1])
-            if saque is not None:
-                mov_diario.append(saque)
-                fb.atualizarBancoDados(contas)
-                print('\nOperação Realizada com sucesso!')
-            else:
-                print(f'\nSaldo Indisponível, O valor máximo para saque é de R${conta["Saldo"]:.2f}')
+        vf.verificarSaque(conta, mov_diario, contas)
         
     elif opcao == 3: #tipos de conta
         lista = fb.criarLista(contas)
