@@ -63,11 +63,11 @@ def criarLista(listaContas):
     for elemento in listaContas: 
         item = elemento['num'].split("-")
         if item[1] == 'C':
-            listaGeral.append([elemento["num"], "Corrente"])
+            listaGeral.append([elemento["num"], "Corrente", elemento['cliente']])
         elif item[1] == 'P':
-            listaGeral.append([elemento["num"], "Poupança"])
+            listaGeral.append([elemento["num"], "Poupança", elemento['cliente']])
         elif item[1] == 'S':
-            listaGeral.append([elemento["num"], "Salário"])
+            listaGeral.append([elemento["num"], "Salário", elemento['cliente']])
     return listaGeral
 
 def movDiario(lista): 
@@ -150,7 +150,7 @@ def dadosOperacaoTransferencia(contas):
 
 def imprimirLista(lista):
     for elemento in lista: 
-        print(f'Conta {elemento[0]}, tipo de conta: {elemento[1]}')
+        print(f'Conta {elemento[0]}, Cliente: {elemento[2]}; tipo de conta: {elemento[1]}')
 
 def criarTipo():
     return int(input("Digite o Tipo da conta a ser cadastrada\n1- Conta Corrente  |  2- Conta Salário  |  3- Conta Poupança\n"))
